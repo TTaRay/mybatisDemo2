@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--mybatis中为每一个映射文件添加一个namespace，这样不同的映射文件中sql语句的id相同也不会有冲突，只要定义在映射文件中的sql语句在该映射文件中id唯一就可以-->
+<mapper namespace="com.ssm.dao.StudentDao">
+	<!--
+		关于参数类型(parameterType)的选择方式：
+   		1.如果传的是一个参数的话,那么就直接写其类型;
+   		2.如果是多个参数的话,那么传的参数就是javabean类型,注意这时候占位符里面的参数要和javabean对象的属性相匹配;
+   	-->
+	<!--这里来说如果不配置resultType那么mybatis并不知道你要往哪儿封装执行完的结果，就会报错-->
+	<select id="findAll" resultType="com.ssm.domain.Student">
+		select * from student
+	</select>
+	<insert id="addStudent">
+		insert into student(name,age,score) values (#{name},#{age},#{score})
+	</insert>
+	<select id="getStudentById" parameterType="java.lang.Integer" resultType="com.ssm.domain.Student">
+		select * from student where id=#{id}
+	</select>
+	<delete id="delStudentById" parameterType="java.lang.Integer">
+		delete from student where id=#{id}
+	</delete>
+	<update id="updStudent" parameterType="com.ssm.domain.Student">
+		update student set name=#{name},age=#{age},score=#{score} where id=#{id}
+	</update>
+</mapper>
