@@ -18,6 +18,8 @@
     </environments>
     <!--注册映射文件,映射配置文件指的是每个dao独立的配置文件-->
     <mappers>
+        <!--注解开发配置1-->
+        <!--<mapper class="com.ssm.dao.StudentDao"/>-->
         <mapper resource="mapper/StudentMapper.xml"/>
     </mappers>
 </configuration>
